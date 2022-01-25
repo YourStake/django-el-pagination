@@ -23,4 +23,7 @@ is to allow pagination of web contents in `very few steps
 
 
 Pull requests are currently not welcome.
-Please feel free to fork!
+
+We are unable to provide support.
+
+Please feel free to fork and thank you!
