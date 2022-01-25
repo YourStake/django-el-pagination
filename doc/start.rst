@@ -5,8 +5,8 @@ Requirements
 ~~~~~~~~~~~~
 
 ======  ====================
-Python  >= 3.5
-Django  >= 1.11
+Python  >= 3.6
+Django  >= 3.2
 jQuery  >= 1.7
 ======  ====================
 
@@ -15,13 +15,13 @@ Installation
 
 The Git repository can be cloned with this command::
 
-    git clone https://github.com/shtalinberg/django-el-pagination.git
+    git clone https://github.com/YourStake/django-el-pagination.git
 
 The ``el_pagination`` package, included in the distribution, should be
 placed on the ``PYTHONPATH``.
 
-Otherwise you can just ``easy_install -Z django-el-pagination``
-or ``pip install django-el-pagination``.
+
+Do ``python3 -m venv .venv`` and  ``pip install git+ssh://git@github.com/YourStake/django-el-pagination.git``.
 
 Settings
 ~~~~~~~~

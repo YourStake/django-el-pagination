@@ -1,6 +1,13 @@
 Changelog
 =========
 
+Version 3.4.0
+~~~~~~~~~~~~~
+
+**New feature**: Django 3.2+ support (includes Django 4)
+    Dropped Python2 support, 
+    Updated make scripts to reflect other updates
+
 
 Version 3.3.0
 ~~~~~~~~~~~~~
