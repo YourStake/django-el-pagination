@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 from django.core.exceptions import ImproperlyConfigured
 from django.http import Http404
 from django.utils.encoding import smart_str
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.generic.base import View
 from django.views.generic.list import MultipleObjectTemplateResponseMixin
 
@@ -152,7 +152,8 @@ class AjaxMultipleObjectTemplateResponseMixin(
         key = 'querystring_key'
         querystring_key = request.GET.get(key,
             request.POST.get(key, PAGE_LABEL))
-        if request.is_ajax() and querystring_key == self.key:
+        is_ajax = request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+        if is_ajax and querystring_key == self.key:
             return [self.page_template or self.get_page_template()]
         return super(
             AjaxMultipleObjectTemplateResponseMixin, self).get_template_names()

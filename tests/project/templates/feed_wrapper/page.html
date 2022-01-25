@@ -1,5 +1,5 @@
 {% load el_pagination_tags %}
-{% if request.is_ajax %}
+{% if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest' %}
   {% lazy_paginate 10 objects %}
 {% endif %}
 {% for object in objects %}

@@ -1,6 +1,8 @@
 Hacking Django EL(Endless) Pagination
 =================================
 
+**This is no longer compatible with python2.**
+
 Here are the steps needed to set up a development and testing environment.
 
 Creating a development environment

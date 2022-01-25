@@ -1,18 +1,18 @@
 # Django Endless Pagination Makefile.
 
 # Define these variables based on the system Python versions.
-PYTHON3 = python3
-VENV3 = .venv3
+PYTHON = python3
+VENV = .venv
 
-LINTER = flake8 --show-source endless_pagination/ tests/
+LINTER = flake8 --show-source el_pagination/ tests/
 MANAGE = python ./tests/manage.py
-
-PYTHON = $(PYTHON3)
-VENV = $(VENV3)
+PIP = $(PYTHON) -m pip install -r tests/requirements.pip
 
 DOC_INDEX = doc/_build/html/index.html
-VENV_ACTIVATE = $(VENV)/bin/activate
+VENV_CREATE = $(PYTHON) -m venv $(VENV)
+VENV_ACTIVATE = . $(VENV)/bin/activate
 WITH_VENV = ./tests/with_venv.sh $(VENV)
+PIP_INSTALL = $(PIP)
 
 all: develop
 
@@ -28,7 +28,7 @@ clean:
 	find . -name '__pycache__' -type d -delete
 
 cleanall: clean
-	rm -rfv $(VENV2) $(VENV3)
+	rm -rfv $(VENV)
 
 check: test lint
 
@@ -36,7 +36,10 @@ $(VENV_ACTIVATE): tests/develop.py tests/requirements.pip
 	@$(PYTHON) tests/develop.py
 	@touch $(VENV_ACTIVATE)
 
-develop: $(VENV_ACTIVATE)
+develop:
+	$(VENV_CREATE)
+	$(VENV_ACTIVATE)
+	$(PIP_INSTALL)
 
 help:
 	@echo -e 'Django Endless Pagination - list of make targets:\n'
@@ -67,7 +70,7 @@ help:
 	@echo '  - make check SHOW_BROWSER=1'
 
 install:
-	python setup.py install
+	$(PYTHON) setup.py install
 
 lint: develop
 	@$(WITH_VENV) $(LINTER)
@@ -76,7 +79,7 @@ opendoc: doc
 	@firefox $(DOC_INDEX)
 
 release: clean
-	python setup.py register sdist upload
+	$(PYTHON) setup.py register sdist upload
 
 server: develop
 	@$(WITH_VENV) $(MANAGE) runserver 0.0.0.0:8000

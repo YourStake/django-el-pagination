@@ -2,7 +2,14 @@
 from __future__ import unicode_literals
 
 from django.template import loader
-from django.utils.encoding import force_text, iri_to_uri
+
+from django.utils.encoding import iri_to_uri
+
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    # django 4 compatibility
+    from django.utils.encoding import force_str as force_text
 
 from el_pagination import loaders, settings, utils
 

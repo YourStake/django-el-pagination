@@ -7,7 +7,13 @@ from contextlib import contextmanager
 from django.template import Context
 from django.test import TestCase
 from django.test.client import RequestFactory
-from django.utils.encoding import force_text
+from django.utils.encoding import iri_to_uri
+
+try:
+    from django.utils.encoding import force_text
+except ImportError:
+    # django 4 compatibility
+    from django.utils.encoding import force_str as force_text
 
 from el_pagination import models as el_models
 from el_pagination import settings, utils
